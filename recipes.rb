@@ -33,11 +33,12 @@ namespace :git do
       GitCommands.new.branch_production
     end
   end
+end
 
-  namespace :deploy do
-    desc "Tag and deploy staging"
-    task :staging => "tag:staging" do
-      `cap staging deploy:long`
-    end
+namespace :deploy do
+  desc "Tag and deploy staging"
+  task :staging => "tag:staging" do
+    `cap staging deploy:long`
   end
 end
+
