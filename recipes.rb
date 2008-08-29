@@ -40,7 +40,7 @@ class GitCommands
     `git push origin #{branch_name}`
   end
   
-protected
+private
 
   def verify_working_directory_clean
     return if `git status` =~ /working directory clean/
