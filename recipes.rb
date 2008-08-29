@@ -12,7 +12,7 @@ namespace :git do
       GitCommands.new.tag_staging(branch_name)
     end
 
-    desc "Update the remove production branch to prepare for a release"
+    desc "Update the remote production branch to prepare for a release"
     task :production => ['diff:staging'] do
       GitCommands.new.tag_production
     end
