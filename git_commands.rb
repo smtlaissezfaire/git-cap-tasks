@@ -1,13 +1,13 @@
 class GitCommands
   def diff_staging
-    `git fetch`
+    fetch
     puts `git diff origin/production origin/staging`
   end
   
   def tag_staging(branch_name)
     verify_working_directory_clean
     
-    `git fetch`
+    fetch
     `git branch -f staging origin/staging`
     `git checkout staging`
     `git reset --hard origin/#{branch_name}`
@@ -19,7 +19,7 @@ class GitCommands
   def tag_production
     verify_working_directory_clean
     
-    `git fetch`
+    fetch
     `git branch -f production origin/production`
     `git checkout production`
     `git reset --hard origin/staging`
@@ -31,7 +31,7 @@ class GitCommands
   def branch_production(branch_name)
     verify_working_directory_clean
     
-    `git fetch`
+    fetch
     `git branch -f production origin/production`
     `git checkout production`
     `git branch #{branch_name}`
@@ -40,6 +40,10 @@ class GitCommands
   end
   
 private
+  
+  def fetch
+    `git fetch`
+  end
 
   def verify_working_directory_clean
     return if `git status` =~ /working directory clean/
